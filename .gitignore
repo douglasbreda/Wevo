@@ -3,3 +3,6 @@
 ################################################################################
 
 /api/.vs/Wevo.API
+/api/Wevo.API/.vs/Wevo.API
+/api/Wevo.API/bin/Debug/net5.0
+/api/Wevo.API/obj

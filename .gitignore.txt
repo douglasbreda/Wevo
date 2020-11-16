@@ -1,3 +1,0 @@
-/api/Wevo.API/Wevo.API/obj/
-/api/Wevo.API/Wevo.API/bin/Debug/
-/api/Wevo.API/.vs/

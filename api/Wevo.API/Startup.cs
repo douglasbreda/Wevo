@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,17 @@ namespace Wevo.API
                 options.UseSqlServer(connectionString);
             });
 
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            corsBuilder.WithExposedHeaders("X-Pagination");
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("SiteCorsPolicy",corsBuilder.Build());
+            });
+
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IRepositoryBase<User>,RepositoryBase<User>>();
         }
@@ -62,6 +74,8 @@ namespace Wevo.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Wevo.API v1"));
             }
+
+            app.UseCors("SiteCorsPolicy");
 
             app.UseHttpsRedirection();
 

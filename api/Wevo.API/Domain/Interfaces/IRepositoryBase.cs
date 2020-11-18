@@ -19,6 +19,8 @@ namespace Wevo.API.Domain.Interfaces
 
         bool Delete(int id);
 
+        IQueryable<TEntity> GetQueryable();
+
         #endregion
     }
 }

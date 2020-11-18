@@ -1,0 +1,12 @@
+.loading{
+    display: flex;
+    justify-self: center;
+}
+
+.loadingHidden{
+    visibility: hidden;
+}
+
+.actionButtons{
+    display: flex;
+}

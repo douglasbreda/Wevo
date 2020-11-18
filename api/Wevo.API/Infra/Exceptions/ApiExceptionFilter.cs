@@ -31,7 +31,7 @@ namespace Wevo.API.Infra.Exceptions
                 context.ExceptionHandled = true;
             }
 
-            base.OnException(context);
+            //base.OnException(context);
         }
     }
 }

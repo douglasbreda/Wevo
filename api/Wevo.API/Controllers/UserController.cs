@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Wevo.API.Domain.Interfaces;
 using Wevo.API.Domain.Models;
 using Wevo.API.Infra.Exceptions;
@@ -28,6 +29,8 @@ namespace Wevo.API.Controllers
 
         #endregion
 
+        #region [HTTP Methods]
+
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<User> Get()
@@ -46,6 +49,8 @@ namespace Wevo.API.Controllers
         [HttpPost]
         public void Post([FromBody] User value)
         {
+            Validate(value);
+
             _repository.Create(value);
         }
 
@@ -53,6 +58,8 @@ namespace Wevo.API.Controllers
         [HttpPut("{id}")]
         public void Put(int id,[FromBody] User value)
         {
+            Validate(value);
+
             if(id != value?.Id)
                 throw new ApiException("O valor do id é diferente do id do objeto");
 
@@ -65,5 +72,33 @@ namespace Wevo.API.Controllers
         {
             _repository.Delete(id);
         }
+
+        #endregion
+
+        #region [General Methods]
+
+        private void Validate(User user)
+        {
+            if(user.Id > 0)
+            {
+                if(_repository.GetQueryable().Where(x => x.Id != user.Id && x.CPF.Equals(user.CPF)).Any())
+                    throw new ApiException("CPF já cadastrado");
+
+                if(_repository.GetQueryable().Where(x => x.Id != user.Id && x.Email.Equals(user.Email)).Any())
+                    throw new ApiException("Email já cadastrado");
+            }
+            else
+            {
+                if(_repository.GetQueryable().Where(x => x.CPF.Equals(user.CPF)).Any())
+                    throw new ApiException("CPF já cadastrado");
+
+                if(_repository.GetQueryable().Where(x => x.Email.Equals(user.Email)).Any())
+                    throw new ApiException("Email já cadastrado");
+            }
+
+
+        }
+
+        #endregion
     }
 }

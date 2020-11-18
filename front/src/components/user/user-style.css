@@ -1,0 +1,52 @@
+.userContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 50%;
+}
+
+.saveButton {
+    background-color: rgb(11, 82, 86);
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.55);
+    position: relative;
+    width: 45%;
+    height: 35px;
+    padding: 2px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+.labelError {
+    visibility: hidden;
+    padding-bottom: 2%;
+}
+
+.showLabelError {
+    color: #f75c64;
+    font-weight: 500;
+    visibility: visible;
+    padding-bottom: 2%;
+}
+
+.formFields{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Creates the style for all buttons the "back" used in the app */
+.backButton {
+    background-color: #B10C0D;
+    box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.55);
+    width: 45%;
+    height: 35px;
+    padding: 2px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    margin-left: 5%;
+}

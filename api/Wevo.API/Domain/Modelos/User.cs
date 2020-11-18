@@ -16,9 +16,9 @@ namespace Wevo.API.Domain.Models
 
         public string Telefone { get; set; }
 
-        public int Sexo { get; set; }
+        public int? Sexo { get; set; }
 
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         #endregion
     }

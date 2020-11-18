@@ -65,6 +65,11 @@ namespace Wevo.API.Domain.Implementacoes
             return entity;
         }
 
+        public IQueryable<TEntity> GetQueryable()
+        {
+            return _context.Set<TEntity>().AsQueryable();
+        }
+
         public bool Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
